@@ -31,7 +31,7 @@
                     <li class="nav-item"><a class="nav-link" href="./contactus.html"><span class="fa fa-address-card fa-lg"></span> Contact</a></li>
                 </ul>
                 <span class="navbar-text">
-                    <a data-toggle="modal" data-target="#loginModal">
+                    <a id="buttonLogin" type="button" role="button">
                         <span class="fa fa-sign-in">
                         </span>
                         Login
@@ -158,7 +158,7 @@
                 </div>
                 <div class="col-12 col-sm-3 align-self-center">
                     <a class="btn btn-block nav-link btn-warning"
-                    data-toggle="modal" data-target="#reservetable" role="button">Reserve Table</a>
+                    id="buttonReservation" type="button" role="button">Reserve Table</a>
                 </div>
             </div>
         </div>
@@ -167,7 +167,7 @@
     <div class="container">
         <div class="row row-content">
             <div class="col">
-                <div id="mycarousel" class="carousel slide" data-ride="carousel">
+                <div id="mycarousel" class="carousel slide" data-interval="100" >
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item">
                             <img class="d-block img-fluid"
@@ -208,6 +208,9 @@
                     <a class="carousel-control-next" href="#mycarousel" role="button" data-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </a>
+                    <button class="btn btn-danger btn-sm" id="carouselButton">
+                        <span id="carousel-button-icon" class="fa fa-pause"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -311,7 +314,29 @@
         <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
         <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#carouselButton").click(function(){
+                if ($("#carouselButton").children("span").hasClass('fa-pause')) {
+                    $("#mycarousel").carousel('pause');
+                    $("#carouselButton").children("span").removeClass('fa-pause');
+                    $("#carouselButton").children("span").addClass('fa-play');
+                }
+                else if ($("#carouselButton").children("span").hasClass('fa-play')){
+                    $("#mycarousel").carousel('cycle');
+                    $("#carouselButton").children("span").removeClass('fa-play');
+                    $("#carouselButton").children("span").addClass('fa-pause');                    
+                }
+            });
+            $("#buttonLogin").click(function(){
+                $('#loginModal').modal('show');
+            });
 
+            $("#buttonReservation").click(function(){
+                $('#reservetable').modal('show');
+            });
+ });
+        </script>
 </body>
 
 </html>
